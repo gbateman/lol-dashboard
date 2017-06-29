@@ -4,7 +4,8 @@
   "description": "A way to see how much better I am than my friends",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+		"start": "node index.js"
   },
   "repository": {
     "type": "git",
