@@ -1,0 +1,24 @@
+{
+  "name": "lol-dashboard",
+  "version": "1.0.0",
+  "description": "A way to see how much better I am than my friends",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gerbot150/lol-dashboard.git"
+  },
+  "author": "Greg Bateman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gerbot150/lol-dashboard/issues"
+  },
+  "homepage": "http://lol.gregbateman.me/",
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "express": "^4.15.3",
+    "pug": "^2.0.0-rc.2"
+  }
+}
