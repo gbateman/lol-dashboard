@@ -11,15 +11,33 @@ const riotHeader = {
   "X-Riot-Token": process.env.RIOT_API_KEY
 }
 
+const tiers = [
+  'BRONZE',
+  'SILVER',
+  'GOLD',
+  'PLATINUM',
+  'DIAMOND',
+  'MASTER',
+  'CHALLENGER'
+]
+
+const ranks = [
+  'V',
+  'IV',
+  'III',
+  'II',
+  'I'
+]
+
 const myId = 30409517;
 const friendIds = [
-  43622871, // John
-  42722081, // Andrew
+  29362558, // John
+  28356954, // Andrew
   30370679, // Noah
   19111203, // Connor
-  31856445, // Stevie
+  19161965, // Stevie
   36570422, // Cam
-  37710415, // Gragon
+  23587917, // Gragon
   35849909, // Javidd
   35738225, // Gerrard
 ]
@@ -57,6 +75,11 @@ function soloQueueRankFromJSON(json) {
     "leaguePoints": soloQueueRank.leaguePoints,
     "wins": soloQueueRank.wins,
     "losses": soloQueueRank.losses,
+    "effectiveRank": function() {
+      return tiers.indexOf(this.tier) * 505
+                    + ranks.indexOf(this.rank) * 101
+                    + this.leaguePoints
+    }
   } : null;
 }
 
@@ -71,7 +94,6 @@ app.get('/', function(req, res) {
         if(!friendRanks[friendIds[i]]) {
           request(optionsWithId(friendIds[i]), function(error, response, body) {
             if (!error && response.statusCode == 200) {
-              console.log(response);
               const json = JSON.parse(body);
               let friendRank = soloQueueRankFromJSON(json);
               if(friendRank) {
@@ -80,7 +102,15 @@ app.get('/', function(req, res) {
 
               responseCounter++;
               if(responseCounter == friendIds.length) {
-                res.render('index', {ranks: friendRanks});
+                let allRanks = Object.assign({myId: myRank}, friendRanks);
+                const sortedKeys = Object.keys(allRanks).sort(function(a, b){
+                  return allRanks[b].effectiveRank() - allRanks[a].effectiveRank();
+                });
+                allRanks = sortedKeys.map(function(key) {
+                  return allRanks[key];
+                });
+
+                res.render('index', {ranks: allRanks});
               }
             } else {
               res.status(400);
