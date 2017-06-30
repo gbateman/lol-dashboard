@@ -27,7 +27,11 @@ app.set('port', process.env.PORT || 5000);
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(request, response) {
-  console.log(fetch(leagueEndpoint.replace('$', myId)));
+  fetch(leagueEndpoint.replace('$', myId), {header: riotHeader}).then(function(res) {
+    return res.json();
+  }).then(function(json) {
+    console.log(json);
+  })
   response.send('<p>test</p>');
 });
 
