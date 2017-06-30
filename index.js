@@ -31,6 +31,9 @@ app.set('port', process.env.PORT || 5000);
 
 app.use(express.static(__dirname + '/public'));
 
+app.set('views', __dirname + '/views');
+app.set('view engine', 'pug');
+
 function optionsWithId(id) {
   return {
     url: leagueEndpoint.replace('$', id),
@@ -77,7 +80,7 @@ app.get('/', function(req, res) {
 
               responseCounter++;
               if(responseCounter == friendIds.length) {
-                res.send(friendRanks);
+                res.render('index', {ranks: friendRanks});
               }
             } else {
               res.status(400);
