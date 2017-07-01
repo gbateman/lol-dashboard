@@ -1,13 +1,51 @@
 html
   head
     link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato')
     link(rel='stylesheet' href='css/style.css')
   body
-    .container-fluid
-      each rank in ranks
-        .row
-          .row-content.col-xs-12.col-sm-10.col-sm-offset-1 
-            img.row-image(src='images/tier-icons/tier-icons/' + rank.tier + '_' + rank.rank + '.png')
-            .row-text= rank.name + ', ' + rank.tier + ' ' + rank.rank + ' - ' + rank.leaguePoints + " LP"
+    .container-fluid.top-level-container
+      .row
+        .container-fluid.col-xs-12.col-sm-10.col-sm-offset-1.better-ranks
+          each rank in betterRanks
+            .row
+              .row-content.col-xs-6 
+                img.row-image(src='images/tier-icons/tier-icons/' + rank.tier + '_' + rank.rank + '.png')
+                .row-text
+                  .row-name= rank.name 
+                  .row-rank= rank.tier + ' ' + rank.rank + ' - ' + rank.leaguePoints + " LP"
+              .row-content.col-xs-6 
+                .row-text You're a nerd...
+          .better-ranks-overlay
+      .row
+        .container-fluid.col-xs-12.col-sm-10.col-sm-offset-1.my-rank
+          .row
+            .row-content.col-xs-6 
+              img.row-image(src='images/tier-icons/tier-icons/' + myRank.tier + '_' + myRank.rank + '.png')
+              .row-text
+                .row-name= myRank.name 
+                .row-rank= myRank.tier + ' ' + myRank.rank + ' - ' + myRank.leaguePoints + " LP"
+            .row-content.col-xs-6 
+              .star-content
+                span.glyphicon.glyphicon-star.star(aria-hidden='true')
+                span.glyphicon.glyphicon-star.star(aria-hidden='true')
+                span.glyphicon.glyphicon-star.star(aria-hidden='true')
+                span.glyphicon.glyphicon-star.star(aria-hidden='true')
+                span.glyphicon.glyphicon-star.star(aria-hidden='true')
+      .row
+        .container-fluid.col-xs-12.col-sm-10.col-sm-offset-1.worse-ranks
+          each rank in worseRanks
+            .row
+              .row-content.col-xs-6 
+                img.row-image(src='images/tier-icons/tier-icons/' + rank.tier + '_' + rank.rank + '.png')
+                .row-text
+                  .row-name= rank.name 
+                  .row-rank= rank.tier + ' ' + rank.rank + ' - ' + rank.leaguePoints + " LP"
+              .row-content.col-xs-6 
+                .row-text 
+                  | I'm 
+                  span.green= (myRank.effectiveRank() / rank.effectiveRank() - 1).toFixed(2) * 100 + '%' 
+                  |  span better than you, scrub.
     
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
     script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')

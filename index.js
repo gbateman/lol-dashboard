@@ -9,8 +9,6 @@ const riotHeader = {
   "X-Riot-Token": process.env.RIOT_API_KEY
 }
 
-console.log(process.env.RIOT_API_KEY);
-
 const tiers = [
   'BRONZE',
   'SILVER',
@@ -92,7 +90,7 @@ function requestWithId(id, res, callback) {
       error && console.log(error);
       console.log(response.statusCode);
       res.status(400);
-      res.send(error);
+      res.send('Riot fucked up. Status: ' + res.statusCode + error && (', ' + error));
     }
   });
 }
@@ -113,7 +111,8 @@ app.get('/', function(req, res) {
 
           requestCounter--;
           if(requestCounter == 0) {
-            let allRanks = Object.assign({myId: myRank}, friendRanks);
+            let allRanks = Object.assign({}, friendRanks);
+            allRanks[myId.toString()] = myRank;
             const sortedIds = Object.keys(allRanks).sort(function(a, b){
               return allRanks[b].effectiveRank() - allRanks[a].effectiveRank();
             });
@@ -121,7 +120,11 @@ app.get('/', function(req, res) {
               return allRanks[key];
             });
 
-            res.render('index', {ranks: allRanks});
+            const myIndex = sortedIds.indexOf(myId.toString());
+            const betterRanks = allRanks.slice(0, myIndex);
+            const worseRanks = allRanks.slice(myIndex + 1, allRanks.length);
+
+            res.render('index', {betterRanks: betterRanks, myRank: myRank, worseRanks: worseRanks});
           }
         });
       }

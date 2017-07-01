@@ -1,14 +1,56 @@
 html {
-    background-color: #111;
+    background-color: #000;
 }
 
 body {
-    background-color: #111;
+    background-color: #000;
+}
+
+.top-level-container {
+    margin-top: 2.5vh;
+}
+
+.better-ranks {
+    border: 5px solid white;
+    border-radius: 5px
+}
+
+.better-ranks-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000;
+    opacity: 0.5;
+    z-index: 1001;
+}
+
+.my-rank {
+    border: 5px solid #2BAFFA;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px
+}
+
+.star-content {
+    display: flex;
+    color: #2BAFFA;
+    font-size: 6vh;
+}
+
+.star {
+    flex-grow: 1;
+}
+
+.worse-ranks {
+    border: 5px solid white;
+    border-radius: 5px
 }
 
 .row {
     height: 10vh;
-    background-color: #111;
+    background-color: #000;
 }
 
 .row-content {
@@ -22,10 +64,22 @@ body {
 
 .row-text {
     display: inline-block;
-    /*top: 50%;
-    transform: translateY(-50%);*/
+    vertical-align: middle;
     margin-left: 10px;
     color: #DDD;
-    font-size: 1.375em;
-    font-family: 'Helvetica', sans-serif;
+    font-size: 1.5em;
+    font-family: Lato, sans-serif;
+    font-weight
+}
+
+.row-name {
+    font-size: 1.275em;
+}
+
+.row-rank {
+    font-size: 0.8em;
+}
+
+.green {
+    color: green;
 }
