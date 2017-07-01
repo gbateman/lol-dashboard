@@ -1,6 +1,14 @@
 html
   head
+    link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    link(rel='stylesheet' href='css/style.css')
   body
-    ul
+    .container-fluid
       each rank in ranks
-        li= rank.name + ', ' + rank.tier + ' ' + rank.rank + ' - ' + rank.leaguePoints
+        .row
+          .row-content.col-xs-12.col-sm-10.col-sm-offset-1 
+            img.row-image(src='images/tier-icons/tier-icons/' + rank.tier + '_' + rank.rank + '.png')
+            .row-text= rank.name + ', ' + rank.tier + ' ' + rank.rank + ' - ' + rank.leaguePoints + " LP"
+    
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+    //- /*script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js", integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa", crossorigin="anonymous")*/

@@ -1,0 +1,23 @@
+.row {
+    height: 10vh;
+    background-color: #000;
+}
+
+.row-content {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.row-image {
+    height: 80%;
+}
+
+.row-text {
+    display: inline-block;
+    /*top: 50%;
+    transform: translateY(-50%);*/
+    margin-left: 10px;
+    color: #DDD;
+    font-size: 1.375em;
+    font-family: 'Helvetica', sans-serif;
+}

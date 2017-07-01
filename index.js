@@ -1,4 +1,4 @@
-const dotenv = require('dotenv');
+const dotenv = require('dotenv').config();
 const express = require('express');
 const app = express();
 const request = require('request');
@@ -9,6 +9,8 @@ const riotHeader = {
   "X-Riot-Token": process.env.RIOT_API_KEY
 }
 
+console.log(process.env.RIOT_API_KEY);
+
 const tiers = [
   'BRONZE',
   'SILVER',
@@ -17,7 +19,7 @@ const tiers = [
   'DIAMOND',
   'MASTER',
   'CHALLENGER'
-]
+];
 
 const ranks = [
   'V',
@@ -25,7 +27,7 @@ const ranks = [
   'III',
   'II',
   'I'
-]
+];
 
 const myId = 30409517;
 const friendIds = [
@@ -38,7 +40,7 @@ const friendIds = [
   23587917, // Gragon
   35849909, // Javidd
   35738225, // Gerrard
-]
+];
 
 let myRank;
 let friendRanks = {};
