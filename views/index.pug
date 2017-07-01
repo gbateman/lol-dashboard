@@ -7,42 +7,45 @@ html
     .container-fluid.top-level-container
         .container-fluid.col-xs-12.col-sm-10.col-sm-offset-1.better-ranks
           each rank in betterRanks
-            .row
-              .row-content.col-xs-6 
-                img.row-image(src='images/tier-icons/tier-icons/' + (rank.tier + '_' + rank.rank).toLowerCase() + '.png')
-                .row-text
-                  .row-name= rank.name 
-                  .row-rank= rank.tier + ' ' + rank.rank + ' - ' + rank.leaguePoints + " LP"
-              .row-content.col-xs-6 
-                .row-text You're a nerd...
+            a(href='https://na.op.gg/summoner/userName=' + rank.name)
+              .row
+                .row-content.col-xs-6 
+                  img.row-image(src='images/tier-icons/tier-icons/' + (rank.tier + '_' + rank.rank).toLowerCase() + '.png')
+                  .row-text
+                    .row-name= rank.name 
+                    .row-rank= rank.tier + ' ' + rank.rank + ' - ' + rank.leaguePoints + " LP"
+                .row-content.col-xs-6 
+                  .row-text You're a nerd...
           .better-ranks-overlay
         .container-fluid.col-xs-12.col-sm-10.col-sm-offset-1.my-rank
-          .row
-            .row-content.col-xs-6 
-              img.row-image(src='images/tier-icons/tier-icons/' + (myRank.tier + '_' + myRank.rank).toLowerCase() + '.png')
-              .row-text
-                .row-name= myRank.name 
-                .row-rank= myRank.tier + ' ' + myRank.rank + ' - ' + myRank.leaguePoints + " LP"
-            .row-content.col-xs-6 
-              .star-content
-                span.glyphicon.glyphicon-star.star(aria-hidden='true')
-                span.glyphicon.glyphicon-star.star(aria-hidden='true')
-                span.glyphicon.glyphicon-star.star(aria-hidden='true')
-                span.glyphicon.glyphicon-star.star(aria-hidden='true')
-                span.glyphicon.glyphicon-star.star(aria-hidden='true')
-        .container-fluid.col-xs-12.col-sm-10.col-sm-offset-1.worse-ranks
-          each rank in worseRanks
+          a(href='https://na.op.gg/summoner/userName=' + myRank.name)
             .row
               .row-content.col-xs-6 
-                img.row-image(src='images/tier-icons/tier-icons/' + (rank.tier + '_' + rank.rank).toLowerCase() + '.png')
+                img.row-image(src='images/tier-icons/tier-icons/' + (myRank.tier + '_' + myRank.rank).toLowerCase() + '.png')
                 .row-text
-                  .row-name= rank.name 
-                  .row-rank= rank.tier + ' ' + rank.rank + ' - ' + rank.leaguePoints + " LP"
+                  .row-name= myRank.name 
+                  .row-rank= myRank.tier + ' ' + myRank.rank + ' - ' + myRank.leaguePoints + " LP"
               .row-content.col-xs-6 
-                .row-text 
-                  | I'm 
-                  span.green= (myRank.effectiveRank() / rank.effectiveRank() - 1).toFixed(2) * 100 + '%' 
-                  |  span better than you, scrub.
+                .star-content
+                  span.glyphicon.glyphicon-star.star(aria-hidden='true')
+                  span.glyphicon.glyphicon-star.star(aria-hidden='true')
+                  span.glyphicon.glyphicon-star.star(aria-hidden='true')
+                  span.glyphicon.glyphicon-star.star(aria-hidden='true')
+                  span.glyphicon.glyphicon-star.star(aria-hidden='true')
+        .container-fluid.col-xs-12.col-sm-10.col-sm-offset-1.worse-ranks
+          each rank in worseRanks
+            a(href='https://na.op.gg/summoner/userName=' + rank.name)
+              .row
+                .row-content.col-xs-6 
+                  img.row-image(src='images/tier-icons/tier-icons/' + (rank.tier + '_' + rank.rank).toLowerCase() + '.png')
+                  .row-text
+                    .row-name= rank.name 
+                    .row-rank= rank.tier + ' ' + rank.rank + ' - ' + rank.leaguePoints + " LP"
+                .row-content.col-xs-6 
+                  .row-text 
+                    | I'm 
+                    span.green= (myRank.effectiveRank() / rank.effectiveRank() - 1).toFixed(2) * 100 + '%' 
+                    |  span better than you, scrub.
     
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
     script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
