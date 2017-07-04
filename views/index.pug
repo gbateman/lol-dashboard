@@ -44,7 +44,7 @@ html
                 .row-content.col-xs-6 
                   .row-text 
                     | I'm 
-                    span.green= (myRank.effectiveRank() / rank.effectiveRank() - 1).toFixed(2) * 100 + '%' 
+                    span.green= ((myRank.effectiveRank() / rank.effectiveRank() - 1) * 100).toFixed(0) + '%' 
                     |  span better than you, scrub.
     
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
