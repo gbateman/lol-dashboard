@@ -38,6 +38,7 @@ const friendIds = [
   23587917, // Gragon
   35849909, // Javidd
   35738225, // Gerrard
+  // 30921162, // Nik
 ];
 
 let myRank;
@@ -131,6 +132,10 @@ app.get('/', function(req, res) {
     }
   });
 });
+
+app.get('/riot.txt', function(req, res) {
+  res.sendFile(__dirname + '/riot.txt');
+})
 
 app.listen(app.get('port'), function() {
   console.log('App is running on port: ' + app.get('port'));
