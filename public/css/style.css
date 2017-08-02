@@ -12,6 +12,15 @@ body {
     padding-top: 2.5vh;
 }
 
+.disclaimer-footer {
+    font-size: 1.2vh;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
 .better-ranks {
     border: 5px solid white;
     border-radius: 5px
