@@ -61,7 +61,7 @@ function optionsWithId(id) {
 function soloQueueRankFromJSON(json) {
   let soloQueueRank;
   for(let i = 0; i < json.length; i++) {
-    if(json[0].queueType == 'RANKED_SOLO_5x5') {
+    if(json[i].queueType == 'RANKED_SOLO_5x5') {
       soloQueueRank = json[i];
       break;
     }
@@ -91,7 +91,7 @@ function requestWithId(id, res, callback) {
       error && console.log(error);
       console.log(response.statusCode);
       res.status(400);
-      res.send('Riot fucked up. Status: ' + res.statusCode + error && (', ' + error));
+      res.send('Riot fucked up. Status: ' + res.statusCode + (error && (', ' + error)));
     }
   });
 }
@@ -114,7 +114,10 @@ app.get('/', function(req, res) {
           if(requestCounter == 0) {
             let allRanks = Object.assign({}, friendRanks);
             allRanks[myId.toString()] = myRank;
+            console.log(allRanks);
             const sortedIds = Object.keys(allRanks).sort(function(a, b){
+              console.log(a, b);
+              console.log(allRanks[a], allRanks[a]);
               return allRanks[b].effectiveRank() - allRanks[a].effectiveRank();
             });
             allRanks = sortedIds.map(function(key) {
