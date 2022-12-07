@@ -19,7 +19,7 @@
   "homepage": "http://lol.gregbateman.me/",
   "dependencies": {
     "dotenv": "^4.0.0",
-    "express": "^4.15.3",
+    "express": "^4.17.3",
     "pug": "^2.0.0-rc.2",
     "request": "^2.81.0"
   }
